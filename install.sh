@@ -6,7 +6,7 @@ then
 fi
 
 
-sed -i "s/USER/$1/g" .emacs.d/std_comment.el
+sed -i "s/USER/$1/g" .emacs.d/epitech/std_comment.el
 
 mv .emacs ~
 rm -rf .emacs.d/
