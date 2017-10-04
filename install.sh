@@ -10,6 +10,6 @@ sed -i "s/USER/$1/g" .emacs.d/epitech/std_comment.el
 
 mv .emacs ~
 rm -rf .emacs.d/
-mv -r .emacs.d/ ~
+mv .emacs.d/ ~
 
 rm -rf $(pwd)
