@@ -10,11 +10,14 @@
 (custom-set-faces)
 
 (add-to-list 'load-path "~/.emacs.d/epitech")
-(add-to-list 'load-path "~/.emacs.d/elpa/smooth-scrolling-20161002.1249")
+(add-to-list 'load-path "~/.emacs.d/smooth-scrolling")
+(add-to-list 'load-path "~/.emacs.d/column-marker")
 
 
 (load "std.el")
 (load "std_comment.el")
+(load "column-marker.el")
+(load "smooth-scrolling.el")
 
 ;;(setq select-enable-clipboard t)
 ;;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
@@ -34,6 +37,9 @@
 
 (require 'smooth-scrolling)
 (smooth-scrolling-mode 1)
+
+(require 'column-marker)
+(add-hook 'c-mode-hook (lambda () (interactive) (column-marker-2 80)))
 
 ;;(add-hook 'c++-mode-hook 'irony-mode)
 ;;(add-hook 'c-mode-hook 'irony-mode)
