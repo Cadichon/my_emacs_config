@@ -50,21 +50,6 @@
 ;;(eval-after-load 'flycheck
   ;;'(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
-(defun copy-to-clipboard ()
-  (interactive)
-  (if (display-graphic-p)
-      (progn
-        (message "Yanked region to x-clipboard!")
-        (call-interactively 'clipboard-kill-ring-save)
-        )
-    (if (region-active-p)
-        (progn
-          (shell-command-on-region (region-beginning) (region-end) "xsel -i -b")
-          (message "Yanked region to clipboard!")
-          (deactivate-mark))
-      (message "No region active; can't yank to clipboard!")))
-  )
-
 (defun my-copy-to-xclipboard(arg)
   (interactive "P")
   (cond
