@@ -6,13 +6,27 @@
 (package-initialize)
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (wombat)))
+ '(custom-safe-themes
+   (quote
+    ("3850f6be6860e382178341c1409997bf8bc5bb9389927524451d86bd508bf642" default)))
  '(inhibit-startup-screen t))
-(custom-set-faces)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(linum ((t (:foreground "grey")))))
 
 (add-to-list 'load-path "~/.emacs.d/epitech")
 (add-to-list 'load-path "~/.emacs.d/smooth-scrolling")
 (add-to-list 'load-path "~/.emacs.d/column-marker")
 
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 (load "std.el")
 (load "std_comment.el")
@@ -26,7 +40,7 @@
 (show-paren-mode 1)
 (global-linum-mode 1)
 (setq linum-format "%4d \u2502 ")
-(custom-set-faces '(linum ((t (:foreground "grey")))))
+
 (setq show-trailing-whitespace t)
 (setq-default show-trailing-whitespace t)
 (add-hook 'c-mode-hook '(lambda () (add-hook 'write-contents-hooks 'delete-trailing-whitespace nil t)))
@@ -94,3 +108,5 @@ pastes from X-SECONDARY."
 (defun my-c-mode-common-hook ()
   (setq flycheck-clang-include-path (list "include" "../include" "../../include" "../../../include" "../../../../include" "../../../../../include")))
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
