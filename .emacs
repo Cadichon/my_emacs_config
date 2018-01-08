@@ -44,6 +44,7 @@
 (setq show-trailing-whitespace t)
 (setq-default show-trailing-whitespace t)
 (add-hook 'c-mode-hook '(lambda () (add-hook 'write-contents-hooks 'delete-trailing-whitespace nil t)))
+(add-hook 'c++-mode-hook '(lambda () (add-hook 'write-contents-hooks 'delete-trailing-whitespace nil t)))
 
 (require 'package)
 (add-to-list 'package-archives
@@ -106,8 +107,9 @@ pastes from X-SECONDARY."
 (global-set-key (kbd "M-w") 'my-copy-to-xclipboard)
 (global-set-key (kbd "C-y") 'my-paste-from-xclipboard)
 
-(defun my-c-mode-common-hook ()
+(defun my-cpp-mode-common-hook ()
   (setq flycheck-clang-include-path (list "include" "../include" "../../include" "../../../include" "../../../../include" "../../../../../include")))
-(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 'c-mode-common-hook 'my-cpp-mode-common-hook)
+(add-hook 'c++-mode-common-hook 'my-cpp-mode-common-hook)
 
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
