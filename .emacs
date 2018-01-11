@@ -113,3 +113,35 @@ pastes from X-SECONDARY."
 (add-hook 'c++-mode-common-hook 'my-cpp-mode-common-hook)
 
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
+
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+(add-to-list 'load-path "~/.emacs.d/elpa")
+
+(require 'yasnippet)
+(yas-global-mode 1)
+
+(ac-config-default)
+
+(require 'ac-c-headers)
+(add-hook 'c-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-c-headers)
+            (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-c-headers)
+            (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
+
+(require 'auto-yasnippet)
+    (global-set-key (kbd "H-w") #'aya-create)
+    (global-set-key (kbd "H-y") #'aya-expand)
+
+(ac-config-default)
+
+(add-to-list 'cc-search-directories ".")
+(add-to-list 'cc-search-directories "./include")
+(add-to-list 'cc-search-directories "../include")
+(add-to-list 'cc-search-directories "../../include")
+(add-to-list 'cc-search-directories "../../../include")
+
+(global-auto-complete-mode t)
