@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: hgetset
+# key: hgs
+# --
+${1:type} get${2:Name}(void) const;
+void set$2($1 $3);

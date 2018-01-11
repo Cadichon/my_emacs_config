@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ifndef
+# key: ifn
+# --
+#ifndef ${1:File}
+#define ${1:$(yas/substr yas-text "[^: ]*")}
+$0
+#endif
