@@ -11,9 +11,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (wombat)))
- '(custom-safe-themes
-   (quote
-    ("3850f6be6860e382178341c1409997bf8bc5bb9389927524451d86bd508bf642" default)))
+ ;; '(custom-safe-themes
+ ;;   (quote
+ ;;    ("3850f6be6860e382178341c1409997bf8bc5bb9389927524451d86bd508bf642" default)))
  '(inhibit-startup-screen t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -33,8 +33,6 @@
 (load "column-marker.el")
 (load "smooth-scrolling.el")
 
-;;(setq select-enable-clipboard t)
-;;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 (put 'upcase-region 'disabled nil)
 (setq column-number-mode t)
 (show-paren-mode 1)
@@ -57,14 +55,7 @@
 (add-hook 'c-mode-hook (lambda () (interactive) (column-marker-2 80)))
 (add-hook 'c++-mode-hook (lambda () (interactive) (column-marker-2 80)))
 
-;;(add-hook 'c++-mode-hook 'irony-mode)
-;;(add-hook 'c-mode-hook 'irony-mode)
-;;(add-hook 'objc-mode-hook 'irony-mode)
-
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
-;;(eval-after-load 'flycheck
-  ;;'(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 (defun my-copy-to-xclipboard(arg)
   (interactive "P")
@@ -113,3 +104,32 @@ pastes from X-SECONDARY."
 (add-hook 'c++-mode-common-hook 'my-cpp-mode-common-hook)
 
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
+
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
+
+(ac-config-default)
+
+(require 'ac-c-headers)
+(add-hook 'c-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-c-headers)
+            (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
+
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-c-headers)
+            (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
+
+(add-to-list 'cc-search-directories ".")
+(add-to-list 'cc-search-directories "./include")
+(add-to-list 'cc-search-directories "../include")
+(add-to-list 'cc-search-directories "../../include")
+(add-to-list 'cc-search-directories "../../../include")
+
+(add-to-list 'cc-search-directories ".")
+(add-to-list 'cc-search-directories "./includes")
+(add-to-list 'cc-search-directories "../includes")
+(add-to-list 'cc-search-directories "../../includes")
+(add-to-list 'cc-search-directories "../../../includes")
+
+(global-auto-complete-mode t)
